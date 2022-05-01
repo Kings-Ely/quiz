@@ -1,21 +1,38 @@
-const QDIV = document.getElementById('q');
 
-async function getData () {
+async function main () {
+    const QDIV = document.getElementById('q');
 
-    const rawQ = await fetch('../backend/get-q.php');
-    const Q = await rawQ.json();
-    console.log(Q);
+    async function getData () {
 
-    for (let name of Q) {
+        const rawQ = await fetch('../backend/get-q.php');
+        const Q = (await rawQ.json()).sort((a, b) => a.time - b.time);
+        if (Q.length) {
+            let first = Q[0].time;
 
-        QDIV.innerHTML += `
+            QDIV.innerHTML = '';
+
+            for (let press of Q) {
+                const { name, time } = press;
+                const place = Q.indexOf(press);
+
+                QDIV.innerHTML += `
             <p class="q-element">
-                ${name}
+                ${place+1} ${name} ${place === 0 ? '' : `(${((time-first)/1000).toPrecision(3)}s behind)`}
             </p>
         `;
+            }
+        }
+
+        setTimeout( () => requestAnimationFrame(getData), 0);
     }
 
-    setTimeout( () => requestAnimationFrame(getData), 100);
+    getData();
+
+    document.getElementById('clear').onclick = async () => {
+        await fetch('../backend/clear-q.php');
+    }
 }
 
-getData();
+if (prompt('Password') === '123') {
+    main();
+}

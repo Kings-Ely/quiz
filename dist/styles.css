@@ -7,7 +7,7 @@
 }
 
 body {
-    background: grey;
+    background: white;
     height: 100vh;
 }
 
@@ -50,4 +50,22 @@ body {
     -ms-transition: 0.1s all ease-out;
     -o-transition: 0.1s all ease-out;
     transition: 0.1s all ease-out;
+}
+
+.q-element {
+    border: 1px solid grey;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    font-size: xxx-large;
+}
+
+#clear {
+    font-size: xxx-large;
+    text-align: center;
+    width: calc(100% - 40px);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    border: 1px solid grey;
 }

@@ -1,13 +1,18 @@
-const name = window.location.href.split('?')[1];
+function main () {
+    const name = decodeURIComponent(window.location.href.split('?')[1]);
 
-console.log('loaded');
+    document.getElementById('name').innerText = name;
 
-document.getElementById('name').innerText = name;
+    document.body.onclick = async (e) => {
 
-document.body.onclick = async (e) => {
-    e.preventDefault();
+        const time = Date.now();
 
-    console.log('Press!');
+        e.preventDefault();
 
-    await fetch('backend/press.php?name=' + name);
+        await fetch(`backend/press.php?name=${name}&time=${time}`);
+    }
+}
+
+if (prompt('Password') === '123') {
+    main();
 }
