@@ -1,5 +1,5 @@
 function main () {
-    const name = decodeURIComponent(window.location.href.split('?')[1]);
+    const name = prompt('Name');
 
     document.getElementById('name').innerText = name;
 
