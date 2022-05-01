@@ -1,0 +1,22 @@
+{
+  "name": "school-quiz",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/revers3ntropy/school-quizz.git"
+  },
+  "author": "revers3ntropy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/revers3ntropy/school-quizz/issues"
+  },
+  "type": "module",
+  "homepage": "https://github.com/revers3ntropy/school-quizz#readme",
+  "devDependencies": {
+    "chalk": "^5.0.1",
+    "performance-now": "^2.1.0"
+  },
+  "dependencies": {
+    "zx": "^6.1.0"
+  }
+}
