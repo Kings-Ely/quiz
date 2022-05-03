@@ -1,8 +1,4 @@
 function main () {
-    const name = prompt('Name');
-
-    document.getElementById('name').innerText = name;
-
     document.body.onclick = async (e) => {
 
         const time = Date.now();
@@ -13,6 +9,4 @@ function main () {
     }
 }
 
-if (prompt('Password') === '123') {
-    main();
-}
+main();

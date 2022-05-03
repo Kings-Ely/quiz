@@ -10,15 +10,24 @@ async function main () {
         if (!Q.length) return;
         let first = Q[0].time;
 
+        let i = 0;
         for (let press of Q) {
+            if (i >= 3) break;
             const { name, time } = press;
             const place = Q.indexOf(press);
 
             QDIV.innerHTML += `
                 <p class="q-element">
-                    ${place+1} ${name} ${place === 0 ? '' : `(${((time-first)/1000).toPrecision(3)}s behind)`}
+                    ${place+1} 
+                    <span style="width: 10%"> </span>
+                    ${name}
+                    <span style="float: right">
+                        ${place === 0 ? '' : `(${((time-first)/1000).toPrecision(3)}s behind)`}
+                    </span>
                 </p>
             `;
+
+            i++;
         }
     }
 
@@ -45,4 +54,6 @@ async function main () {
 
 if (prompt('Password') === '123') {
     main();
+} else {
+    window.location.assign('../');
 }

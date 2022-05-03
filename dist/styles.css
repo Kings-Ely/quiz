@@ -1,19 +1,23 @@
-:root {
-
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
 
 * {
-
+    transition: 300ms;
 }
 
-body {
+p, span {
+    transition: 0ms;
+}
+
+html, body {
     background: white;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     height: 100vh;
 }
 
-#name {
-    font-size: xx-large;
-    text-align: center;
+*, button {
+    font-family: 'Inter', sans-serif;
 }
 
 .center {
@@ -24,36 +28,9 @@ body {
     margin-top: -100px;
 }
 
-#button {
-    width: 200px;
-    height: 180px;
-    line-height: 200px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 50%;
-    background: #f74d4d -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f74d4d), color-stop(100%, #f86569));
-    box-shadow: 0 15px #e24f4f;
-    -webkit-user-select: none;  /* Chrome all / Safari all */
-    -moz-user-select: none;     /* Firefox all */
-    -ms-user-select: none;      /* IE 10+ */
-    user-select: none;          /* Likely future */
-}
-
-#button:active {
-    box-shadow: 0 0 #e24f4f;
-    -webkit-transform: translate(0px, 15px);
-    -moz-transform: translate(0px, 15px);
-    -ms-transform: translate(0px, 15px);
-    -o-transform: translate(0px, 15px);
-    -webkit-transition: 0.1s all ease-out;
-    -moz-transition: 0.1s all ease-out;
-    -ms-transition: 0.1s all ease-out;
-    -o-transition: 0.1s all ease-out;
-    transition: 0.1s all ease-out;
-}
-
 .q-element {
-    border: 1px solid grey;
+    border: none;
+    background: #ececec;
     padding: 20px;
     margin: 20px;
     border-radius: 20px;
@@ -63,9 +40,15 @@ body {
 #clear {
     font-size: xxx-large;
     text-align: center;
-    width: calc(100% - 40px);
+    width: 100%;
     padding: 20px;
-    margin: 20px;
-    border-radius: 20px;
-    border: 1px solid grey;
+    margin: 0 0 20px;
+
+    border-radius: 0;
+    border: none;
+}
+
+.dark-bg {
+    background: #333;
+    color: #ffffff;
 }
