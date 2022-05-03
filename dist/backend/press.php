@@ -1,4 +1,9 @@
 <?php
+require 'api-pass.php';
+
+if ($_GET['password'] != $API_PASS) {
+    die('incorrect password');
+}
 
 $name = $_GET['name'];
 $time = $_GET['time'];
@@ -16,7 +21,6 @@ class Press {
 // load
 $jsonString = file_get_contents('data.json');
 $data = json_decode($jsonString, true);
-
 
 
 if (count(array_filter($data['button-press-q'], function ($var) use ($name) {

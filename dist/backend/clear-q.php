@@ -1,4 +1,9 @@
 <?php
+require 'api-pass.php';
+
+if ($_GET['password'] != $API_PASS) {
+    die('incorrect password');
+}
 
 // load
 $jsonString = file_get_contents('data.json');

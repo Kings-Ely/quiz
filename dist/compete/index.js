@@ -1,3 +1,5 @@
+let password = prompt('Password');
+
 function main () {
     const name = prompt('Name');
 
@@ -5,12 +7,13 @@ function main () {
 
     document.getElementById('name').innerText = name;
 
-    document.body.onclick = async (e) => {
+    document.body.onclick = async (event) => {
+        // as precise time as possible
         const time = Date.now();
 
-        e.preventDefault();
+        event.preventDefault();
 
-        await fetch(`../backend/press.php?name=${name}&time=${time}`);
+        await fetch(`../backend/press.php?name=${name}&time=${time}&password=${password}`);
     }
 
     async function getData () {
@@ -32,7 +35,8 @@ function main () {
     getData();
 }
 
-if (prompt('Password') === '123') {
+
+if (password === '123') {
     main();
 } else {
     window.location.assign('../');

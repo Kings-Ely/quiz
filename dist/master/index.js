@@ -1,3 +1,4 @@
+const password = prompt('Password');
 
 async function main () {
     const QDIV = document.getElementById('q');
@@ -34,7 +35,12 @@ async function main () {
     async function getData () {
 
         const rawQ = await fetch('../backend/get-q.php');
-        Q = (await rawQ.json()).sort((a, b) => a.time - b.time);
+        const newQ = (await rawQ.json()).sort((a, b) => a.time - b.time);
+        if (newQ.length !== Q.length) {
+            // TODO: play sound
+        }
+        Q = newQ;
+
         draw();
 
         setTimeout( () => requestAnimationFrame(getData), 0);
@@ -43,16 +49,13 @@ async function main () {
     getData();
 
     document.getElementById('clear').onclick = async () => {
-        console.log('cleaning...');
-        await fetch('../backend/clear-q.php');
-
-        console.log('cleared');
+        await fetch(`../backend/clear-q.php?password=${password}`);
         Q = [];
         draw();
     }
 }
 
-if (prompt('Password') === '123') {
+if (password === '123') {
     main();
 } else {
     window.location.assign('../');

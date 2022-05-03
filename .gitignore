@@ -6,3 +6,4 @@ package-lock.json
 sshPass.txt
 
 dist/backend/data.json
+/dist/backend/api-pass.php
