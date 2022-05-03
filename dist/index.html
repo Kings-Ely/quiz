@@ -3,13 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Quiz</title>
-    <link href="../styles.css" rel="stylesheet">
-    <script src="index.js" defer></script>
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        * {
+            text-align: center;
+            width: 100%;
+            transition: 200ms;
+        }
+        a {
+            background: rgba(0, 0, 0, 0.01);
+            transition: 500ms;
+            border-radius: 20px;
+            font-size: 12vw;
+            text-decoration: none;
+            border: 1px solid #ececec;
+            text-align: center;
+            margin: 30px;
+            padding: 20px;
+            height: fit-content;
+            color: grey;
+        }
+
+        a:hover {
+            background: #ececec;
+        }
+    </style>
 </head>
 <body>
-    <p id="name"></p>
-    <div class="center">
-        <div id="button"></div>
-    </div>
+    <p style="font-size: 6vw">Are you a...</p>
+    <br>
+    <a href="compete">Competitor</a>
+    <br><br><br><br><br><br><br>
+    <a href="master">Quiz-Master</a>
 </body>
 </html>
