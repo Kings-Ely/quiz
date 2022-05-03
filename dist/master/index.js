@@ -2,6 +2,8 @@ const password = prompt('Password');
 
 async function main () {
     const QDIV = document.getElementById('q');
+    const buzzer = new Audio('buzzer.mp3');
+    buzzer.setAttribute('preload', 'auto');
 
     let Q = [];
 
@@ -41,7 +43,7 @@ async function main () {
         const rawQ = await fetch('../backend/get-q.php');
         const newQ = (await rawQ.json()).sort((a, b) => a.time - b.time);
         if (newQ.length !== Q.length) {
-            // TODO: play sound
+            buzzer.play().then(console.log);
         }
         Q = newQ;
 
