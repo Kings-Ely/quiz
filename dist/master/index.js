@@ -22,9 +22,10 @@ async function main () {
 
             QDIV.innerHTML += `
                 <p class="q-element">
-                    ${place + 1} 
-                    <span style="width: 10%"> </span>
-                    ${name}
+                    ${place + 1}
+                    <span style="padding-left: 5%">
+                        ${name}
+                    </span>
                     <span style="float: right">
                         ${place === 0 ? '' : `(${((time - first) / 1000).toPrecision(3)}s behind)`}
                     </span>

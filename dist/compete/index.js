@@ -22,7 +22,7 @@ function main () {
         const Q = await rawQ.json();
 
         if (Q.filter(a => a.name === name).length) {
-            helpText.innerText = 'Wait, ';
+            helpText.innerText = 'Please wait, ';
             document.body.classList.add('dark-bg');
         } else {
             helpText.innerText = 'Tap anywhere, ';

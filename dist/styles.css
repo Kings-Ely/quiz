@@ -30,11 +30,11 @@ html, body {
 
 .q-element {
     border: none;
-    background: #ececec;
     padding: 20px;
     margin: 20px;
-    border-radius: 20px;
+    border-radius: 0;
     font-size: xxx-large;
+    border-bottom: 2px solid grey;
 }
 
 #clear {
@@ -43,9 +43,10 @@ html, body {
     width: 100%;
     padding: 20px;
     margin: 0 0 20px;
-
     border-radius: 0;
     border: none;
+    color: white;
+    background: #3d3d3d;
 }
 
 .dark-bg {
