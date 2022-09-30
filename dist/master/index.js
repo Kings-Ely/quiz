@@ -1,37 +1,43 @@
 const password = prompt('Password');
 
 async function main () {
-    const QDIV = document.getElementById('q');
+    const $presses = document.getElementById('q');
+
     const buzzer = new Audio('buzzer.mp3');
     buzzer.setAttribute('preload', 'auto');
+
     const ding = new Audio('ding.wav');
     buzzer.setAttribute('preload', 'auto');
 
     let Q = [];
 
     function draw () {
-        QDIV.innerHTML = '';
+        $presses.innerHTML = '';
 
         if (!Q.length) {
-            QDIV.innerHTML = '<p style="font-size: xxx-large; text-align: center">...</p>';
+            $presses.innerHTML = '<p style="font-size: xxx-large; text-align: center">...</p>';
             return;
         }
         let first = Q[0].time;
 
         let i = 0;
         for (let press of Q) {
-            if (i >= 3) break;
-            const {name, time} = press;
+            if (i === 3) {
+                $presses.innerHTML += '<p style="font-size: xxx-large; text-align: center">...</p>';
+            }
+            const { name, time } = press;
             const place = Q.indexOf(press);
 
-            QDIV.innerHTML += `
+            $presses.innerHTML += `
                 <p class="q-element">
-                    ${place + 1}
+                    <span style="color: grey">
+                        ${place + 1}
+                    </span>
                     <span style="padding-left: 5%">
                         ${name}
                     </span>
-                    <span style="float: right">
-                        ${place === 0 ? '' : `(${((time - first) / 1000).toPrecision(3)}s behind)`}
+                    <span style="float: right; color: grey">
+                        ${place === 0 ? '' : `(${(time - first).toPrecision(3)}s behind)`}
                     </span>
                 </p>
             `;
@@ -64,8 +70,10 @@ async function main () {
     }
 }
 
-if (password === '123') {
-    main();
-} else {
-    window.location.assign('../');
-}
+(async () => {
+    if (await (await fetch(`../backend/valid-pass.php?password=${password}`)).text() === '1') {
+        main();
+    } else {
+        window.location.assign('../');
+    }
+})();

@@ -34,7 +34,7 @@ html, body {
     margin: 20px;
     border-radius: 0;
     font-size: xxx-large;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 #clear {
@@ -47,6 +47,7 @@ html, body {
     border: none;
     color: white;
     background: #3d3d3d;
+    cursor: pointer;
 }
 
 .dark-bg {

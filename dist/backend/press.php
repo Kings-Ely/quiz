@@ -1,12 +1,18 @@
 <?php
 require 'api-pass.php';
 
-if ($_GET['password'] != $API_PASS) {
+if ($_GET['password'] != API_PASS) {
     die('incorrect password');
 }
 
+function milliseconds() {
+    $mt = explode(' ', microtime());
+    return ((int)$mt[1]) * 1000 + ((int)round($mt[0] * 1000));
+}
+
 $name = $_GET['name'];
-$time = $_GET['time'];
+//$time = $_GET['time'];
+$time = milliseconds() / 1000;
 
 class Press {
     public $name;

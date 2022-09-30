@@ -6,8 +6,6 @@ import chalk from 'chalk';
 import * as fs from "fs";
 
 async function uploadFrontend () {
-	const start = now();
-
 	const paths = fs.readdirSync('./dist/');
 
 	for (const path of paths) {

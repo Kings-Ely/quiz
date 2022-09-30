@@ -7,11 +7,17 @@ function main () {
 
     document.getElementById('name').innerText = name;
 
+    let state = 'ready';
+
     document.body.onclick = async (event) => {
         // as precise time as possible
         const time = Date.now();
 
         event.preventDefault();
+
+        if (state !== 'ready') return;
+
+        state = 'pressed';
 
         await fetch(`../backend/press.php?name=${name}&time=${time}&password=${password}`);
     }
@@ -22,9 +28,17 @@ function main () {
         const Q = await rawQ.json();
 
         if (Q.filter(a => a.name === name).length) {
+            if (state === 'pressed') {
+                state = 'waiting';
+            }
+
             helpText.innerText = 'Please wait, ';
             document.body.classList.add('dark-bg');
         } else {
+            if (state === 'waiting') {
+                state = 'ready';
+            }
+
             helpText.innerText = 'Tap anywhere, ';
             document.body.classList.remove('dark-bg');
         }
@@ -35,9 +49,10 @@ function main () {
     getData();
 }
 
-
-if (password === '123') {
-    main();
-} else {
-    window.location.assign('../');
-}
+(async () => {
+    if (await (await fetch(`../backend/valid-pass.php?password=${password}`)).text() === '1') {
+        main();
+    } else {
+        window.location.assign('../');
+    }
+})();
