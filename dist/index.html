@@ -10,6 +10,7 @@
             width: 100%;
             transition: 200ms;
         }
+
         a {
             background: rgba(0, 0, 0, 0.01);
             transition: 500ms;
@@ -27,15 +28,30 @@
         a:hover {
             background: #ececec;
         }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .flex > * {
+            width: fit-content;
+        }
+
+        @media (max-width: 600px) {
+            a {
+                margin: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <p style="font-size: 6vw">Are you a...</p>
-    <div>
-        <a href="compete">Competitor</a>
-    </div>
-    <div>
+    <div class="flex">
         <a href="master">Quiz-Master</a>
+        <a href="compete">Competitor</a>
     </div>
 </body>
 </html>

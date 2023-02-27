@@ -1,7 +1,7 @@
 <?php
 require 'api-pass.php';
 
-if ($_GET['password'] != API_PASS) {
+if ($_GET['password'] != READ_PASS) {
     die('incorrect password');
 }
 

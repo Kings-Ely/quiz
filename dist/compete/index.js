@@ -1,4 +1,4 @@
-let password = prompt('Password');
+let password = prompt('Compete Password');
 
 function main () {
     const name = prompt('Name');
@@ -7,9 +7,10 @@ function main () {
 
     document.getElementById('name').innerText = name;
 
+    /** @type {'ready' | 'pressed' | 'waiting'} */
     let state = 'ready';
 
-    document.body.onclick = async (event) => {
+    document.body.onclick = (event) => {
         // as precise time as possible
         const time = Date.now();
 
@@ -19,13 +20,13 @@ function main () {
 
         state = 'pressed';
 
-        await fetch(`../backend/press.php?name=${name}&time=${time}&password=${password}`);
+        fetch(`../backend/press.php?name=${name}&time=${time}&password=${password}`);
     }
 
     async function getData () {
 
-        const rawQ = await fetch('../backend/get-q.php');
-        const Q = await rawQ.json();
+        let rawQ = await fetch('../backend/get-q.php');
+        let Q = await rawQ.json();
 
         if (Q.filter(a => a.name === name).length) {
             if (state === 'pressed') {
@@ -43,14 +44,19 @@ function main () {
             document.body.classList.remove('dark-bg');
         }
 
-        setTimeout( () => requestAnimationFrame(getData), 500);
+        // free memory
+        rawQ = null;
+        Q = null;
+
+        setTimeout( () => requestAnimationFrame(getData), 200);
     }
 
     getData();
 }
 
 (async () => {
-    if (await (await fetch(`../backend/valid-pass.php?password=${password}`)).text() === '1') {
+    const auth = await (await fetch(`../backend/valid-pass.php?password=${password}`)).text();
+    if (auth === '1') {
         main();
     } else {
         window.location.assign('../');

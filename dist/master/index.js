@@ -1,4 +1,4 @@
-const password = prompt('Password');
+const password = prompt('Quiz-master Password');
 
 async function main () {
     const $presses = document.getElementById('q');
@@ -48,12 +48,15 @@ async function main () {
 
     async function getData () {
 
-        const rawQ = await fetch('../backend/get-q.php');
-        const newQ = (await rawQ.json()).sort((a, b) => a.time - b.time);
+        let rawQ = await fetch('../backend/get-q.php');
+        let newQ = (await rawQ.json()).sort((a, b) => a.time - b.time);
         if (newQ.length !== Q.length) {
             buzzer.play();
         }
+
         Q = newQ;
+        newQ = null;
+        rawQ = null;
 
         draw();
 
@@ -71,7 +74,8 @@ async function main () {
 }
 
 (async () => {
-    if (await (await fetch(`../backend/valid-pass.php?password=${password}`)).text() === '1') {
+    const auth = await (await fetch(`../backend/valid-quizmaster-pass.php?password=${password}`)).text();
+    if (auth === '1') {
         main();
     } else {
         window.location.assign('../');
