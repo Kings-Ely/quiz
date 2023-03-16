@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Password</title>
+</head>
+<body>
+<a href="../">Back</a>
+<br>
+<br>
+<input
+    type="text"
+    id="password-inp"
+    placeholder="New Password for Competitors"
+    style="width: 200px"
+/>
+<br>
+<input
+        type="text"
+        id="password-inp-master"
+        placeholder="Quizmaster Password"
+        style="width: 200px"
+/>
+<br>
+<button onclick="onClick()">Set Password</button>
+</body>
+</html>
+
+<script defer>
+    const compPass = document.getElementById('password-inp');
+    const masterPass = document.getElementById('password-inp-master');
+    function onClick () {
+        fetch(`../../backend/update-password.php?password=${compPass.value}&master=${masterPass.value}`)
+            .then(() => {
+                window.location.assign('../');
+            });
+    }
+</script>

@@ -1,4 +1,4 @@
 <?php
 require 'api-pass.php';
 
-echo $_GET['password'] == READ_PASS ? '1' : '0';
+echo $_GET['password'] == file_get_contents('./password.txt') ? '1' : '0';

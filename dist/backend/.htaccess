@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /
+
+# Protect password.txt
+<Files ./password.txt>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Disable directory browsing
+Options All -Indexes

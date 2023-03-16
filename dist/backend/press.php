@@ -1,7 +1,7 @@
 <?php
 require 'api-pass.php';
 
-if ($_GET['password'] != READ_PASS) {
+if ($_GET['password'] != file_get_contents('./password.txt')) {
     die('incorrect password');
 }
 
@@ -11,8 +11,8 @@ function milliseconds() {
 }
 
 $name = $_GET['name'];
-//$time = $_GET['time'];
-$time = milliseconds() / 1000;
+$time = $_GET['time'] / 1000;
+//$time = milliseconds() / 1000;
 
 class Press {
     public $name;
